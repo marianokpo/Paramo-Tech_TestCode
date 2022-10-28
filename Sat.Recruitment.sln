@@ -1,11 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30709.64
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sat.Recruitment.Api", "Sat.Recruitment.Api\Sat.Recruitment.Api.csproj", "{1F342EA2-E7B1-4E53-AB93-9C62288D3FB0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{95CC2C6A-69FD-4EB1-A084-7473335A4253} = {95CC2C6A-69FD-4EB1-A084-7473335A4253}
+		{E393BB98-0159-41ED-B6AB-F4378A4149CC} = {E393BB98-0159-41ED-B6AB-F4378A4149CC}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sat.Recruitment.Test", "Sat.Recruitment.Test\Sat.Recruitment.Test.csproj", "{42E696E9-2672-4B91-AD96-353A69F7219C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sat.Recruitment.Test", "Sat.Recruitment.Test\Sat.Recruitment.Test.csproj", "{42E696E9-2672-4B91-AD96-353A69F7219C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{95CC2C6A-69FD-4EB1-A084-7473335A4253} = {95CC2C6A-69FD-4EB1-A084-7473335A4253}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{D45D44B1-DFCC-46D2-807F-022145CD5663}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A660AC9C-DB79-4EBA-8E51-B1936300404D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{C6191BE4-CCCA-419B-A9FC-D685380BBF3C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{E393BB98-0159-41ED-B6AB-F4378A4149CC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D45D44B1-DFCC-46D2-807F-022145CD5663} = {D45D44B1-DFCC-46D2-807F-022145CD5663}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{95CC2C6A-69FD-4EB1-A084-7473335A4253}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E393BB98-0159-41ED-B6AB-F4378A4149CC} = {E393BB98-0159-41ED-B6AB-F4378A4149CC}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +44,28 @@ Global
 		{42E696E9-2672-4B91-AD96-353A69F7219C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42E696E9-2672-4B91-AD96-353A69F7219C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42E696E9-2672-4B91-AD96-353A69F7219C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D45D44B1-DFCC-46D2-807F-022145CD5663}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D45D44B1-DFCC-46D2-807F-022145CD5663}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D45D44B1-DFCC-46D2-807F-022145CD5663}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D45D44B1-DFCC-46D2-807F-022145CD5663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E393BB98-0159-41ED-B6AB-F4378A4149CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E393BB98-0159-41ED-B6AB-F4378A4149CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E393BB98-0159-41ED-B6AB-F4378A4149CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E393BB98-0159-41ED-B6AB-F4378A4149CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95CC2C6A-69FD-4EB1-A084-7473335A4253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95CC2C6A-69FD-4EB1-A084-7473335A4253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95CC2C6A-69FD-4EB1-A084-7473335A4253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95CC2C6A-69FD-4EB1-A084-7473335A4253}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1F342EA2-E7B1-4E53-AB93-9C62288D3FB0} = {A660AC9C-DB79-4EBA-8E51-B1936300404D}
+		{42E696E9-2672-4B91-AD96-353A69F7219C} = {C6191BE4-CCCA-419B-A9FC-D685380BBF3C}
+		{D45D44B1-DFCC-46D2-807F-022145CD5663} = {A660AC9C-DB79-4EBA-8E51-B1936300404D}
+		{E393BB98-0159-41ED-B6AB-F4378A4149CC} = {A660AC9C-DB79-4EBA-8E51-B1936300404D}
+		{95CC2C6A-69FD-4EB1-A084-7473335A4253} = {A660AC9C-DB79-4EBA-8E51-B1936300404D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2A05765-05B9-484D-8D3D-506849EB716F}

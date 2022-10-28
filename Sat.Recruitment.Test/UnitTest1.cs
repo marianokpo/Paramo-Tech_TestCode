@@ -1,9 +1,7 @@
-using System;
-using System.Dynamic;
-
-using Microsoft.AspNetCore.Mvc;
-
-using Sat.Recruitment.Api.Controllers;
+using System.Threading;
+using Application.Commmon.Interfaces;
+using Application.UserCase.V1.UserOperation.Commonds;
+using Infrastructure.Services;
 
 using Xunit;
 
@@ -12,28 +10,74 @@ namespace Sat.Recruitment.Test
     [CollectionDefinition("Tests", DisableParallelization = true)]
     public class UnitTest1
     {
-        [Fact]
-        public void Test1()
+        private readonly IFilesServices _filesServices;
+        private readonly IUsersServices _usersServices;
+        private PostCreateUserHandler _handler;
+        private CancellationToken _cancellationToken;
+
+        public UnitTest1()
         {
-            var userController = new UsersController();
+            _filesServices = new FilesServices();
+            _usersServices = new UsersServices();
+            _cancellationToken = CancellationToken.None;
+            _handler = new PostCreateUserHandler(_filesServices, _usersServices);
+        }
 
-            var result = userController.CreateUser("Mike", "mike@gmail.com", "Av. Juan G", "+349 1122354215", "Normal", "124").Result;
+        [Fact]
+        public async void CreateUser()
+        {
+            PostCreateUser postCreateUser = new PostCreateUser()
+            {
+                name = "Mike",
+                email = "mike@gmail.com",
+                address = "Av. Juan G",
+                phone = "+349 1122354215",
+                userType = "Normal",
+                money = "124"
+            };
 
+            var result = await _handler.Handle(postCreateUser, _cancellationToken);
 
-            Assert.Equal(true, result.IsSuccess);
+            Assert.True(result.IsSuccess);
             Assert.Equal("User Created", result.Errors);
         }
 
         [Fact]
-        public void Test2()
+        public async void DuplicateUser()
         {
-            var userController = new UsersController();
+            PostCreateUser postCreateUser = new PostCreateUser()
+            {
+                name = "Agustina",
+                email = "Agustina@gmail.com",
+                address = "Av. Juan G",
+                phone = "+349 1122354215",
+                userType = "Normal",
+                money = "124"
+            };
 
-            var result = userController.CreateUser("Agustina", "Agustina@gmail.com", "Av. Juan G", "+349 1122354215", "Normal", "124").Result;
+            var result = await _handler.Handle(postCreateUser, _cancellationToken);
 
-
-            Assert.Equal(false, result.IsSuccess);
+            Assert.False(result.IsSuccess);
             Assert.Equal("The user is duplicated", result.Errors);
+        }
+
+        [Fact]
+        public async void DataErrorUser()
+        {
+            PostCreateUser postCreateUser = new PostCreateUser()
+            {
+                name = "",
+                email = null,
+                address = "Av. Juan G",
+                phone = "+349 1122354215",
+                userType = "Normal",
+                money = "124"
+            };
+
+            var result = await _handler.Handle(postCreateUser, _cancellationToken);
+
+            Assert.False(result.IsSuccess);
+            Assert.Equal("The name is required The email is required", result.Errors);
         }
     }
 }
