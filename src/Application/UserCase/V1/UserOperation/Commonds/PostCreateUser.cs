@@ -65,6 +65,15 @@ namespace Application.UserCase.V1.UserOperation.Commonds
             }
             else
             {
+                if (!_filesServices.WriteUserToFile(newUser))
+                {
+                    return new Result()
+                    {
+                        IsSuccess = false,
+                        Errors = "Error writing user to file"
+                    };
+                }
+
                 Debug.WriteLine("User Created");
 
                 return new Result()

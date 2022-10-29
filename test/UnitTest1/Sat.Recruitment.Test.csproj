@@ -24,4 +24,10 @@
     <ProjectReference Include="..\..\src\Api\Sat.Recruitment.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Files\Users.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

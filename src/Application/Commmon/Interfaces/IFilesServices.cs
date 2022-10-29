@@ -7,5 +7,7 @@ namespace Application.Commmon.Interfaces
     public interface IFilesServices
     {
         public Task<List<User>> GetUsersFromFile();
+
+        public bool WriteUserToFile(User user);
     }
 }
